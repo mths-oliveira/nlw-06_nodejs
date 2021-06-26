@@ -14,7 +14,8 @@ class AuthenticateUserService {
     const usersRepositories = getCustomRepository(UsersRepositories);
 
     const user = await usersRepositories.findOne({
-      email,
+      select: ['password', 'email', 'id'],
+      where: { email },
     });
 
     if (!user) {
@@ -26,6 +27,7 @@ class AuthenticateUserService {
     if (!passwordMatch) {
       throw new Error('E-mail or password is incorrect');
     }
+    console.log({ secret: process.env.TOKEN_SECRET });
 
     const token = sign(
       {

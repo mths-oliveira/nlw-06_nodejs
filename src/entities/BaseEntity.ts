@@ -11,14 +11,16 @@ export abstract class BaseEntity {
   @CreateDateColumn({
     name: 'created_at',
     type: 'varchar',
-    default: 'now()',
+    select: false,
+    default: new Date().toLocaleString(),
   })
   readonly createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
     type: 'varchar',
-    default: 'now()',
+    select: false,
+    default: new Date().toLocaleString(),
   })
   updatedAt: Date;
 

@@ -5,7 +5,7 @@ import { User } from './User';
 import { BaseEntity } from './BaseEntity';
 
 @Entity('compliments')
-class Compliment extends BaseEntity {
+export class Compliment extends BaseEntity {
   @Column()
   user_sender: string;
 
@@ -30,5 +30,3 @@ class Compliment extends BaseEntity {
   @Column()
   message: string;
 }
-
-export { Compliment };
