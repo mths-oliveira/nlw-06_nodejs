@@ -7,7 +7,7 @@ class ListTagsService {
 
     const tags = await tagsRepositories.find();
 
-    return classToPlain(tags);
+    return tags;
   }
 }
 

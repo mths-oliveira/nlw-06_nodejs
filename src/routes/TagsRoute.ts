@@ -12,9 +12,21 @@ router.post(
   '/tags',
   ensureAuthenticated,
   ensureAdmin,
-  createTagController.handle
+  async (request, response) => {
+    try {
+      await createTagController.handle(request, response);
+    } catch (error) {
+      return response.status(409).json({ error: error.message });
+    }
+  }
 );
 
-router.get('/tags', ensureAuthenticated, listTagsController.handle);
+router.get('/tags', ensureAuthenticated, async (request, response) => {
+  try {
+    await listTagsController.handle(request, response);
+  } catch (error) {
+    return response.status(404).json({ error: error.message });
+  }
+});
 
 export default router;
